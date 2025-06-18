@@ -1,0 +1,162 @@
+@media (min-width: 256px) {
+    .list-parent {
+        height: 200px !important;
+    }
+  }
+
+.list-lb {
+    margin-bottom: 10px;
+    border-style: solid;
+    width: 100%;
+    border-radius: 10px;
+    border-width: 1px;
+    border-color: #821b3f;
+    vertical-align: middle;
+    color: #821b3f;
+    font-weight: bold;
+}
+
+.list-lb:hover {
+    margin-bottom: 10px;
+    border-style: solid;
+    width: 100%;
+    border-radius: 10px;
+    border-width: 1px;
+    background-color: #821b3f;
+    color: #fff !important;
+    font-weight: bold;
+}
+
+
+
+.list-parent {
+    height: 300px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.list-parent-nt {
+    height: 380px;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+.del {
+    cursor: pointer;
+    padding: 10px;
+    font-size: 20px !important;
+}
+
+
+/*ListUsers*/
+
+.list-wrapper {
+    width: 100%;
+}
+
+.list-dt  {
+    border-radius: 2px;
+    list-style: none;
+    padding: 10px 20px;
+}
+.list-spv    {
+ border-radius: 2px;
+    list-style: none;
+    padding: 10px 20px;
+}
+
+.list-item {
+    display: flex;
+    padding-bottom: 5px;
+    padding-top: 5px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.list-item:last-child {
+    border-bottom: none;
+}
+
+.list-item-image {
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+}
+
+.list-item-image-xl {
+    border-radius: 50%;
+    width: 120px;
+    height: 120px;
+}
+
+
+.list-item-content {
+    margin-left: 20px;
+}
+
+.h4 {
+    margin-top: 10px;
+    font-size: 18px;
+}
+
+.p {
+    margin-top: 5px;
+}
+
+.H {
+    content: url("../img/h.png");
+    background-size: contain;
+}
+
+.M {
+    content: url("../img/m.png");
+    background-size: contain;
+}
+
+
+/*detalle*/
+
+.list-detail {
+    height: auto;
+    display: block;
+}
+
+.detail-active {
+    display: block;
+}
+
+
+/*circle*/
+
+.stat-P {
+    background-image: linear-gradient(210deg, #7a1f1f 40%,#7a1f1fb4 52%, #570823 53%)!important;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    text-align: center;
+}
+
+.stat-A {
+    background-image: linear-gradient(210deg, #B38E5D  40%,#b38e5dab 52%, #B38E5D  53%)!important;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    text-align: center;
+}
+
+.stat-C {
+    background-image: linear-gradient(210deg, #13322B 40%,#13322bb6 52%, #13322B 53%)!important;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    text-align: center;
+}
+
+.stat-R {
+    background-image: linear-gradient(210deg, #000 40%,rgba(0, 0, 0, 0.685) 52%, #000 53%)!important;
+    border-radius: 50%;
+    width: 64px;
+    height: 64px;
+    text-align: center;
+}
+
+/*Help Desk*/

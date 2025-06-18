@@ -1,0 +1,104 @@
+            /* The Modal (background) */
+
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 2;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0, 0, 0);
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+            /* Modal Content */
+
+            .modal-header {
+                text-align: center;
+                vertical-align: middle;
+                background-color: #393C3E;
+                padding: 15px;
+                margin-bottom: 1px;
+            }
+
+            .modal-content {
+                overflow: auto;
+                border-radius: 20px;
+                background-color: #fefefe;
+                margin: auto;
+                width: 50%;
+                height: auto;
+                max-height: 80%;
+                max-width: 100%;
+                display: block;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            /* The Close Button */
+
+            .close {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+            }
+
+            .close:hover,
+            .close:focus {
+                color: #000;
+                text-decoration: none;
+                cursor: pointer;
+            }
+
+            @media (pointer:none),
+            (pointer:coarse) {
+                .modal .modal-content {
+                    width: 90%;
+                    height: 90%;
+                }
+            }
+
+            @media (pointer:none),
+            (pointer:coarse) {
+                .modal-psw .modal-psw-content {
+                    width: 90%;
+                    height: 50%;
+                }
+            }
+
+
+
+            .modal-psw {
+                display: none;
+                position: fixed;
+                z-index: 2;
+                width: 100%;
+                height: 100%;
+                overflow: auto;
+                background-color: rgb(0, 0, 0);
+                background-color: rgba(0, 0, 0, 0.4);
+            }
+
+
+            .modal-psw-content {
+                overflow: auto;
+                border-radius: 20px;
+                background-color: #fefefe;
+                margin: auto;
+                width: 50%;
+                height: auto;
+                max-height: 80%;
+                max-width: 100%;
+                display: block;
+                position: fixed;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+
+            .dt-container {
+                font-size: small;
+            }

@@ -1,0 +1,78 @@
+.notification {
+    color: #661e2c;
+    text-decoration: none;
+    position: relative;
+    display: inline-block;
+    border-radius: 2px;
+    text-align: right;
+    cursor: pointer;
+}
+
+.notification:hover {
+    color: #10312b;
+}
+
+.notification .badge {
+    position: absolute;
+    top: -20px;
+    right: -20px;
+    width: 100%;
+    height: 34px;
+    border-radius: 50%;
+    background: #ba996c;
+    color: white;
+}
+
+#ntf-counter {
+    margin-top: 8px;
+}
+
+.badge {
+    width: 34px !important;
+    height: 34px !important;
+}
+
+.ntf-box {
+    display: none;
+    margin-left: -50%;
+    opacity: 0;
+    padding: 10px;
+    border-width: 2px;
+    width: 100%;
+    height: 260px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #821b3f65;
+    position: relative;
+    border-radius: 5px;
+    text-align: center;
+    overflow:hidden
+}
+
+.ntf-list{
+    height: 180px;
+    width: 100%;
+    margin-top: 45px;
+    text-align: left;
+    overflow-x: auto;
+    overflow-y: auto;
+}
+
+#ntf-close {
+    color: #661e2c;
+}
+
+.audio {
+    src: url('../ntf/ntf.wav') !important
+}
+
+.disabled, .btn[disabled], fieldset[disabled] .btn {
+    cursor: not-allowed;
+    opacity: .65;
+    filter: alpha(opacity=65);
+    box-shadow: none;
+}
+
+.no-rotate{
+    transform: rotate(0turn) !important;
+}

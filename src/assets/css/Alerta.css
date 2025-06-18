@@ -1,0 +1,11 @@
+.alertaOp{
+    display: none;
+    position: fixed;
+    width: 50%;
+    margin-top: 50px;
+    margin-left: auto;
+    margin-right: auto;
+    left: 0;
+    right: 0;
+    z-index:999999
+}

@@ -1,0 +1,147 @@
+.MuiInputBase-input {
+    font-family: 'Montserrat' !important;
+    font-size: 18px !important;
+    line-height: 0 !important;
+    color: #404041 !important;
+    font-weight: normal !important;
+    padding: 0 !important;
+}
+
+.MuiSvgIcon-root {
+    font-size: 25px !important;
+    font-weight: normal;
+}
+
+.MuiInput-root {
+    width: 100% !important;
+}
+
+.MuiFormControl-root {
+    width: 100% !important;
+}
+
+.MuiInput-underline {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "" !important;
+    position: absolute;
+    transition: border-bottom-color 2ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-style: none;
+}
+
+.MuiInput-underline:before {
+    left: 0;
+    right: 0;
+    bottom: 0;
+    content: "";
+    position: absolute;
+    transition: border-bottom-color 200ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+    border-bottom: 1px solid rgb(255, 255, 255) !important;
+    pointer-events: none;
+}
+
+.MuiInput-underline:after {
+    position: absolute;
+    border-bottom: 2px solid #fff !important;
+    pointer-events: none;
+}
+
+.MuiIconButton-root {
+    padding: 0px !important;
+}
+
+.MuiPickersDay-current {
+
+    color: #000 !important;
+    font-weight: 500;
+    background-color: #fff !important;
+    border-color: #821b3f !important;
+    border-style: solid !important;
+    border-width: 1px !important;
+}
+
+.MuiPickersDay-daySelected:hover {
+    color: #fff !important;
+    font-weight: 500;
+    background-color: #821b3f !important;
+}
+
+
+.MuiPickersDay-daySelected {
+    color: #fff !important;
+    font-weight: 500;
+    background-color: #821b3f !important;
+}
+
+.MuiPickersDay-day:hover{
+    color: #fff !important;
+    font-weight: 500;
+    background-color: #821b3f !important;
+}
+
+
+.MuiTypography-body1 {
+    font-family: 'Montserrat' !important;
+    
+    font-size: 16px !important;
+    color: #fff !important;
+    font-weight: normal !important;
+}
+
+.MuiTypography-body2 {
+    
+    font-size: 16px !important;
+    font-family: 'Montserrat' !important;
+    font-weight: 400;
+    line-height: 1.43;
+    letter-spacing: 0.01071em;
+}
+
+.MuiPickersCalendarHeader-dayLabel {
+    color: rgba(0, 0, 0, 0.38);
+    width: 36px;
+    margin: 0 2px;
+    font-weight: bold !important;
+    text-align: center;
+    font-size: 12px !important;
+    font-family: 'Montserrat' !important;
+
+}
+
+.MuiPickersCalendarHeader-switchHeader{
+display: flex;
+margin-top: 4px;
+align-items: center;
+margin-bottom: 8px;
+justify-content: space-between;
+background-color: #404041;
+
+}
+
+
+
+.MuiSvgIcon-root {
+     color: rgba(0, 0, 0, 0.562);
+}
+
+.MuiPickersCalendarHeader-iconButton {
+    z-index: 1;
+    background-color: #9f9fa0 !important;
+    
+}
+
+.MuiPickersBasePicker-pickerView{
+display: block !important;
+}
+
+.MuiPickersCalendarHeader-switchHeader {
+    display: flex;
+    height: 40px;
+    margin-top: 4px;
+    align-items: center;
+    margin-bottom: 8px;
+    justify-content: space-between;
+    padding: 5px;
+}
+

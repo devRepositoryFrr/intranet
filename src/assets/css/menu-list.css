@@ -1,0 +1,40 @@
+.menu * {
+    list-style: none;
+}
+
+.menu {
+    padding-inline-start: 0px !important;
+}
+
+.menu li {
+    line-height: 180%;
+}
+
+.menu li a:before {
+    content: "●";
+    color: #821b3f;
+    margin-right: 4px;
+}
+
+.menu input[name="list"] {
+    position: absolute;
+    left: -1000em;
+}
+
+.menu label:before {
+    content: "►";
+    margin-right: 4px;
+    color: #821b3f;
+}
+
+.menu input:checked~label:before {
+    content: "▼";
+}
+
+.menu .interior {
+    display: none;
+}
+
+.menu input:checked~ul {
+    display: block;
+}

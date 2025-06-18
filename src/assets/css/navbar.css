@@ -1,0 +1,93 @@
+#navbarMainCollapse {
+    background-color: transparent !important;
+}
+
+/*.navbar-inverse {
+    background-image: linear-gradient(15deg, #FFFFFF 0%, #B38E5D 100%)!important;
+}*/
+
+.navbar-brand img {
+    content: url("../img/encab2021.png");
+}
+
+
+
+@media (max-width: 778px) {
+    .navbar-brand img {
+        width: 270px;
+        height: auto;
+        padding-left: 30px;
+    }
+}
+
+@media (max-width: 457px) {
+    .navbar-brand img {
+        width: 270px;
+        height: auto;
+        padding-left: 30px;
+    }
+}
+
+@media (max-width: 363px) {
+    .navbar-brand img {
+        width: 230px;
+        height: auto;
+        padding-left: 30px;
+    }
+}
+
+@media (max-width: 76px) {
+    .navbar-brand img {
+        width: 150px;
+        height: auto;
+        padding-left: 30px;
+    }
+}
+
+.navbar-inverse .navbar-brand,
+.navbar-inverse .navbar-nav>li>a,
+.navbar-inverse .navbar-text {
+    color: #ffffff !important;
+}
+
+
+/*colofon*/
+
+.colofon {
+    position: relative;
+    background-color: #343a40;
+    background: url("../img/bg-colofon_2021.jpg") no-repeat center center;
+    background-image: url("../img/bg-colofon_2021.jpg");
+    background-position-x: center;
+    background-position-y: center;
+    background-size: cover;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: #343a40;
+    background-size: auto;
+    background-size: cover;
+    padding-top: 7rem;
+    padding-bottom: 7rem;
+}
+
+.red-text {
+    color: #821b3f !important;
+    font-weight: 500 !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+.lead {
+    margin-bottom: 20px;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 1.6em;
+}
+
+.row-fixed {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+}

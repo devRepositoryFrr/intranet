@@ -23,7 +23,7 @@ import { Link, withRouter } from "react-router-dom";
 import Etica from "./components/etica.jsx";
 import CtrlAcceso from "./components/CtrlAcceso.jsx";
 import CtrlVehicular from "./components/CtrlVehicular.jsx";
-
+import Nomina from "./components/Nomina.jsx";
 
 function App() {
 	return (
@@ -53,7 +53,7 @@ function App() {
 					<Route path="/CtrlAsistencia" exact component={() => <CtrlAsistencia />} />
 					<Route path="/CtrlAcceso" exact component={() => <CtrlAcceso />} />
 					<Route path="/CtrlVehicular" exact component={() => <CtrlVehicular />} />
-					
+					<Route path="/Nomina" exact component={() => <Nomina/>} />
 				</Switch>
 			</HashRouter>
 

@@ -1959,6 +1959,16 @@ function Inicio(props) {
 								</div>
 							</div>
 						</Link>
+						<Link id="ctrl-asis" to="/Nomina">
+							<div class="col-md-3 bottom-buffer dropdown-sp dropbtn-sp">
+								<div class="card">
+
+									<i class="gold fas fa-calendar-check top-buffer-x15" style={{ fontSize: 40 }}> </i>
+									<p class="card-tittle red">Nomina</p>
+
+								</div>
+							</div>
+						</Link>
 						<Link id="" to="/VideosASF">
 							<div class="col-md-3 bottom-buffer dropdown-sp dropbtn-sp" title="Dirección de Planeación y Evaluación Institucional">
 								<div class="card">

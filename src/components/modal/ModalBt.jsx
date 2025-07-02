@@ -24,7 +24,7 @@ export default function ModalBt() {
 		
 	
 	const minDate = new Date(new Date().getTime());
-	let subject = "soportesistemas@conavi.gob.mx;jzenil@conavi.gob.mx;jvirtom@conavi.gob.mx;brsotelo@conavi.gob.mx;" + mail_[0].email;
+	let subject = "soportesistemas@conavi.gob.mx;jzenil@conavi.gob.mx;jvirtom@conavi.gob.mx;brsotelo@conavi.gob.mx;"/*"jmvargas@conavi.gob.mx;"*/ + mail_[0].email;
 	//let subject = "lmmendoza@conavi.gob.mx";
 	let cboHinicio = "";
 	let cboHtermino = "";
@@ -97,7 +97,7 @@ export default function ModalBt() {
 
 		if (validaCampos()) {
 			Axios.post('https://sistemaintegral.conavi.gob.mx:81/api/solicitar_sala', {
-
+			//Axios.post('http://localhost:3001/api/solicitar_sala', {
 				dbUsuario: $("#cboUsuario").children("option:selected").val(),
 				dbfInicial: moment(dbfInicial).format('YYYY-MM-DD'),
 				cboHinicio: $("#cboHinicio").val(),
@@ -106,6 +106,7 @@ export default function ModalBt() {
 				laptop: $("#laptop:checked").val(),
 				proyector: $("#proyector:checked").val(),
 				agua: $("#agua:checked").val(),
+				cafeteria: $("#cafeteria:checked").val(),
 				sonido: $("#sonido:checked").val(),
 				estenografia: $("#estenografia:checked").val(),
 				acrilicos: $("#acrilicos:checked").val(),
@@ -119,9 +120,11 @@ export default function ModalBt() {
 
 			}).then(
 				(response) => {
+					
 					var lp = "Laptop: No";
 					var py = "Proyector: No";
 					var ag = "Agua: No";
+					var cf = "Cafeteria: No";
 					var sd = "Sonido: No";
 					var en = "Estenografía: No";
 					var ac = "Acrílicos: No";
@@ -137,6 +140,9 @@ export default function ModalBt() {
 
 					if ($("#agua:checked").val() == "1") {
 						ag = "Agua: Si";
+					}
+					if ($("#cafeteria:checked").val() == "1") {
+						cf = "Cafeteria: Si";
 					}
 
 					if ($("#sonido:checked").val() == "1") {
@@ -154,7 +160,7 @@ export default function ModalBt() {
 					if ($("#virtual:checked").val() == "1") {
 						vt = "Conexión virtual: Si";
 					}
-
+					
 
 					var user = JSON.parse(localStorage.getItem('credenciales'));
 					if (response.data != "") {
@@ -171,6 +177,7 @@ export default function ModalBt() {
 							"<p><span style='color:#821b3f'>●</span>" + lp + "</p>" +
 							"<p><span style='color:#821b3f'>●</span>" + py + "</p>" +
 							"<p><span style='color:#821b3f'>●</span>" + ag + "</p>" +
+							"<p><span style='color:#821b3f'>●</span>" + cf + "</p>" +
 							"<p><span style='color:#821b3f'>●</span>" + sd + "</p>" +
 							"<p><span style='color:#821b3f'>●</span>" + en + "</p>" +
 							"<p><span style='color:#821b3f'>●</span>" + ac + "</p>" +
@@ -549,6 +556,10 @@ export default function ModalBt() {
 					<div class="col-md-3">
 						<small>Agua</small><br />
 						<input id="agua" value="1" type="checkbox" />
+					</div>
+					<div class="col-md-3">
+						<small>Cafetería</small><br />
+						<input id="cafeteria" value="1" type="checkbox" />
 					</div>
 
 					<div class="col-md-3">

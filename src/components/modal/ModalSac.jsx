@@ -15,7 +15,7 @@ import Axios from 'axios';
 export default function ModalSac() {
 	var url = "https://sistemaintegral.conavi.gob.mx:81"
 	//var url = "http://localhost:3001";
-	let subject = "csalgado@conavi.gob.mx;gmiguel@conavi.gob.mx;rtorralba@conavi.gob.mx;";
+	let subject = "csalgado@conavi.gob.mx;gmiguel@conavi.gob.mx;rtorralba@conavi.gob.mx;amoreno@conavi.gob.mx;coord.seguridad@sedatu.gob.mx;";
 	//let subject = "lmmendoza@conavi.gob.mx ; jmvargas@conavi.gob.mx";
 	var user = JSON.parse(localStorage.getItem('credenciales'));
 

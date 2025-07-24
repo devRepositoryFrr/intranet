@@ -9,6 +9,7 @@ import ModalBt from './modal/ModalBt';
 import ModalLb from './modal/ModalLb';
 import ModalSac from './modal/ModalSac';
 import ModalSvh from './modal/ModalSvh';
+import ModalCn from './modal/ModalCn.jsx';  // modal nuevo consulta de nóminas
 import ModalDt from './modal/ModalDt';
 import ModalSp from './modal/ModalSp';
 import ModalSpV from './modal/ModalSpV';
@@ -33,7 +34,7 @@ import id from 'date-fns/esm/locale/id/index.js';
 import Alert from '../assets/js/Alerta.js';
 import Axios from 'axios';
 import SystemsGalery from './SystemsGalery';
-
+const apiKey = process.env.REACT_APP_API_KEY;
 
 let modulo = "Inicio";
 let tries = 0;
@@ -83,7 +84,7 @@ const submitPsw = () => {
 	if (validarPsw()) {
 
 		var user_ = JSON.parse(localStorage.getItem('credenciales'));
-		Axios.post('https://sistemaintegral.conavi.gob.mx:81/api/cambio_contrasena', {
+		Axios.post(apiKey + '/api/cambio_contrasena', {
 
 			password: $("#n_password").val(),
 			email: user_[0].email,
@@ -132,7 +133,7 @@ function comeri() {
 function obtenerDirectorio(tipo) {
 
 
-	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/ver_directorio/" + tipo, function (data) {
+	$.getJSON( apiKey + "/api/ver_directorio/" + tipo, function (data) {
 
 		var items = [];
 
@@ -140,7 +141,7 @@ console.log(data);
 
 		$.each(data, function (key, val) {
 
-			let url = "https://sistemaintegral.conavi.gob.mx:81/int/foto_personal/" + val.email + ".jpg"
+			let url = apiKey + "/int/foto_personal/" + val.email + ".jpg"
 
 
 			items.push(
@@ -177,7 +178,7 @@ function obtenerReservaciones() {
 
 	var user = JSON.parse(localStorage.getItem('credenciales'));
 
-	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/ver_reservaciones/" + user[0].email, function (data) {
+	$.getJSON( apiKey+ "/api/ver_reservaciones/" + user[0].email, function (data) {
 		var items = [];
 		$.each(data, function (key, val) {
 			items.push("<div style='padding:10px; text-align:'center'' class='list-lb'><div class='hidden' id='dv" + val.id + "'><i id='a" + val.id + "' class='fas fa-check-circle conf box'></i><i id='c" + val.id + "' class='fas fa-times-circle  canc box'></i></div><i id='d" + val.id + "'  class='fas fa-minus-circle  del '></i>" + val.detalle + "</div>");
@@ -192,7 +193,7 @@ function obtenerReservaciones() {
 function obtenerTitulosNt() {
 	$(".enlace-nt").remove();
 	$(".t-nt").remove();
-	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/titulos_nt/T", function (data) {
+	$.getJSON(apiKey + "/api/titulos_nt/T", function (data) {
 		var items = [];
 		$.each(data, function (key, val) {
 			items.push(
@@ -207,7 +208,7 @@ function obtenerTitulosNt() {
 }
 
 function addEnlacesNt() {
-	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/titulos_nt/L", function (data) {
+	$.getJSON( apiKey + "/api/titulos_nt/L", function (data) {
 
 		$.each(data, function (key, val) {
 			if (val.subtitulo == "X") {
@@ -229,7 +230,7 @@ function addEnlacesNt() {
 function obtenerTitulosCe() {
 	$(".enlace-ce").remove();
 	$(".t-ce").remove();
-	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/titulos_ce/T", function (data) {
+	$.getJSON( apiKey + "/api/titulos_ce/T", function (data) {
 		var items = [];
 
 		$.each(data, function (key, val) {
@@ -245,7 +246,7 @@ function obtenerTitulosCe() {
 }
 
 function addEnlacesCe() {
-	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/titulos_Ce/L", function (data) {
+	$.getJSON( apiKey + "/api/titulos_Ce/L", function (data) {
 
 		$.each(data, function (key, val) {
 			if (val.subtitulo == "X") {
@@ -268,7 +269,7 @@ function obtenerTitulosPl(bloque) {
 
 	$(".enlace-pl").remove();
 	$(".t-pl").remove();
-	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/titulos_pl/T/" + bloque, function (data) {
+	$.getJSON( apiKey + "/api/titulos_pl/T/" + bloque, function (data) {
 		//$.getJSON("http://localhost:3001/api/titulos_pl/T/"+bloque, function (data) {
 		var items = [];
 
@@ -285,7 +286,7 @@ function obtenerTitulosPl(bloque) {
 }
 
 function addEnlacesPl(bloque) {
-	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/titulos_pl/L/" + bloque, function (data) {
+	$.getJSON( apiKey + "/api/titulos_pl/L/" + bloque, function (data) {
 		//$.getJSON("http://localhost:3001/api/titulos_pl/L/"+bloque, function (data) {
 		$.each(data, function (key, val) {
 			if (val.subtitulo == "X") {
@@ -308,7 +309,7 @@ function obtenerTipoSoporte() {
 	$(".tipoSoporte").remove();
 	var items = [];
 	$("#soporte_cbotipo").append("<option class='tipoSoporte' value='0'>--Selecciona--</option>");
-	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/tipo_soporte", function (data) {
+	$.getJSON( apiKey + "/api/tipo_soporte", function (data) {
 		$.each(data, function (key, val) {
 			$("#soporte_cbotipo").append("<option class='tipoSoporte' value='" + val.id + "'>" + val.descripcion + "</option>");
 
@@ -320,7 +321,7 @@ function obtenerTipoSoporte() {
 function obtenerStatusTicket() {
 	var user = JSON.parse(localStorage.getItem('credenciales'));
 
-	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/ver_tickets/" + user[0].email, function (data) {
+	$.getJSON( apiKey + "/api/ver_tickets/" + user[0].email, function (data) {
 		var items = [];
 		$.each(data, function (key, val) {
 			var icon = "";
@@ -368,7 +369,7 @@ const jqu = () => {
 	function obtenerNotificaciones() {
 
 		if ($("body").hasClass("Inicio") == true) {
-			$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/ver_notificaciones", function (data) {
+			$.getJSON( apiKey + "/api/ver_notificaciones", function (data) {
 
 				var items = [];
 
@@ -399,7 +400,7 @@ const jqu = () => {
 
 			});
 
-			$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/ver_visitas", function (data) {
+			$.getJSON( apiKey + "/api/ver_visitas", function (data) {
 
 				var items = [];
 
@@ -424,7 +425,7 @@ const jqu = () => {
 	setInterval(obtenerNotificaciones, 20000);
 	if (tries == 0) {
 
-		$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/cumple_mes", function (data) {
+		$.getJSON( apiKey + "/api/cumple_mes", function (data) {
 
 			$.each(data, function (key, val) {
 				$("#cumple-mes").append(val.des);
@@ -655,6 +656,15 @@ const add_asis = (tipo) => {
 	//});
 
 	//obtenerTipoSoporte();
+}
+
+//consulta de nómina
+
+const open_cn = () => {
+	var user = JSON.parse(localStorage.getItem('credenciales'));
+	$("#modal").css("display", "block");
+	$('html').css("overflow", "hidden");
+	$("#content-cn").css("display", "block");
 }
 
 //abrir normateca
@@ -1324,7 +1334,7 @@ export function asistencia() {
 	const d = new Date().toLocaleDateString('en-CA');
 	const h = new Date().toLocaleTimeString("en-US", { hour12: false });
 	//console.log(email)
-	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/todAsis/" + email + "/" + d, function (data) {
+	$.getJSON( apiKey + "/api/todAsis/" + email + "/" + d, function (data) {
 
 		var items = [];
 		//console.log(data)
@@ -1341,6 +1351,26 @@ export function asistencia() {
 			$("#asistencia").removeClass("basis").css("textAlign", "left").html('<table class="table"><thead><tr><th>Entrada</th><th>Salida</th></tr></thead><tbody><tr><td>-</td><td>-</td></tr></tbody></table>');
 		}
 	});
+}
+function addEnlacesCn() {
+	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/titulos_Ce/L", function (data) {
+		//$.getJSON("http://localhost:3001/api/titulos_pl/L/"+bloque, function (data) {
+
+		$.each(data, function (key, val) {
+			if (val.subtitulo == "X") {
+				$(".interior" + val.id_bloque).append(
+					"<li id='ce-link-" + val.id + "'><strong>" + val.descripcion + "</strong></li>");
+			} else {
+				$(".interior" + val.id_bloque).append(
+					"<li><a id='ce-link-" + val.id + "' class='enlace enlace-ce' href='../int/" + val.ubicacion + "' target='_blank'>" + val.descripcion + "</a></li>");
+			}
+
+		});
+
+
+
+	});
+
 }
 
 function Inicio(props) {
@@ -1452,6 +1482,7 @@ function Inicio(props) {
 						<ModalLb />
 						<ModalSac />
 						<ModalSvh />
+						<ModalCn />
 						<ModalDt />
 						<ModalSp />
 						<ModalSpV />
@@ -1755,6 +1786,13 @@ function Inicio(props) {
 
 							</div>
 						</div>}
+						<div onClick={open_cn} id="open-cn" class="col-md-3 bottom-buffer">
+							<div class="card">
+								<img class="pl" />
+								<p class="card-tittle red">Consulta de Nóminas</p>
+
+							</div>
+						</div>
 						<Link id="adms-vpost" to="/CandidatosVisor">
 							<div class="col-md-3 bottom-buffer dropdown-sp dropbtn-sp ">
 								<div class="card">
@@ -1955,6 +1993,16 @@ function Inicio(props) {
 
 									<i class="gold fas fa-calendar-check top-buffer-x15" style={{ fontSize: 40 }}> </i>
 									<p class="card-tittle red">Control de Asistencia</p>
+
+								</div>
+							</div>
+						</Link>
+						<Link id="ctrl-asis" to="/Nomina">
+							<div class="col-md-3 bottom-buffer dropdown-sp dropbtn-sp">
+								<div class="card">
+
+									<i class="gold fas fa-calendar-check top-buffer-x15" style={{ fontSize: 40 }}> </i>
+									<p class="card-tittle red">Nomina</p>
 
 								</div>
 							</div>

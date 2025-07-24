@@ -19,6 +19,7 @@ import Visor_cv from "./components/Visor_cv.jsx";
 import Sistemas from "./components/Sistemas.jsx";
 import ConsultaRenapo from "./components/ConsultaRenapo.jsx";
 import CtrlAsistencia from "./components/CtrlAsistencia.jsx";
+import Nomina from "./components/modal/ModalCn.jsx";
 import { Link, withRouter } from "react-router-dom";
 import Etica from "./components/etica.jsx";
 import CtrlAcceso from "./components/CtrlAcceso.jsx";
@@ -51,6 +52,7 @@ function App() {
 					<Route path="/Sistemas" exact component={() => <Sistemas />} />
 					<Route path="/ConsultaRenapo" exact component={() => <ConsultaRenapo />} />
 					<Route path="/CtrlAsistencia" exact component={() => <CtrlAsistencia />} />
+					<Route path="/ModalCn" exact component={() => <Nomina />} />
 					<Route path="/CtrlAcceso" exact component={() => <CtrlAcceso />} />
 					<Route path="/CtrlVehicular" exact component={() => <CtrlVehicular />} />
 					

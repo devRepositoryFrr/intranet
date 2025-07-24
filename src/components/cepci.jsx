@@ -36,8 +36,8 @@ const get_cepci = () => {
 		'<h6>DIRECTORAS Y DIRECTORES DE ÁREA CANDIDATOS A FORMAR PARTE DEL CEPCI DE LA CONAVI 2023-2026</h6>' +
 		'<hr class="red"></hr>' +
 		'<div id="cepci_2" class="cepci row">' +
-		'</div>' +
-		'<h6>SUBDIRECTORAS Y SUBDIRECTORES DE ÁREA CANDIDATOS A FORMAR PARTE DEL CEPCI DE LA CONAVI 2023-2026</h6>' +
+		'</div>' 
+		/*+'<h6>SUBDIRECTORAS Y SUBDIRECTORES DE ÁREA CANDIDATOS A FORMAR PARTE DEL CEPCI DE LA CONAVI 2023-2026</h6>' +
 		'<hr class="red"></hr>' +
 		'<div id="cepci_3" class="cepci row">' +
 		'</div>' +
@@ -56,7 +56,7 @@ const get_cepci = () => {
 		'<h6>ENLACES CANDIDATOS A FORMAR PARTE DEL CEPCI DE LA CONAVI 2023-2026</h6>' +
 		'<hr class="red"></hr>' +
 		'<div id="cepci_5" class="cepci row">' +
-		'</div>');
+		'</div>'*/);
 
 	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/get_cepci/", function (data) {
 
@@ -119,7 +119,7 @@ const send_evaluacion_old = () => {
 		}
 	});
 
-	$('.cepci_3').each(function () {
+	/*$('.cepci_3').each(function () {
 		if ($(this).prop("checked") == true) {
 
 			if (counter_3 == 1) {
@@ -151,15 +151,15 @@ const send_evaluacion_old = () => {
 			Ecepci_5 = $(this).attr("email");
 		}
 	});
-
+*/
 
 	if (Ecepci_1 != "" &&
-		Ecepci_2 != "" &&
-		Ecepci_3_1 != "" &&
+		Ecepci_2 != "" 
+		/*Ecepci_3_1 != "" &&
 		Ecepci_3_2 != "" &&
 		Ecepci_4_1 != "" &&
 		Ecepci_4_2 != "" &&
-		Ecepci_5 != "") {
+		Ecepci_5 != ""*/) {
 
 
 	} else {
@@ -221,7 +221,7 @@ const send_evaluacion = () => {
 		}
 	});
 
-	$('.cepci_3').each(function () {
+	/*$('.cepci_3').each(function () {
 		if ($(this).prop("checked") == true) {
 
 			if (counter_3 == 1) {
@@ -295,12 +295,12 @@ const send_evaluacion = () => {
 			counter_5++
 		}
 	});
-
+*/
 
 
 
 	if (Ecepci_1_1 != "" &&
-		Ecepci_2_1 != "" &&
+		Ecepci_2_1 != ""/* &&
 		Ecepci_2_2 != "" &&
 		Ecepci_3_1 != "" &&
 		Ecepci_3_2 != "" &&
@@ -311,7 +311,7 @@ const send_evaluacion = () => {
 		Ecepci_4_3 != "" &&
 		Ecepci_4_4 != "" &&
 		Ecepci_5_1 != "" &&
-		Ecepci_5_2 != "") {
+		Ecepci_5_2 != ""*/) {
 
 		Axios.post('https://sistemaintegral.conavi.gob.mx:81/api/send_cepci', {
 			//		Axios.post('http://localhost:3001/api/send_cepci', {
@@ -398,7 +398,7 @@ function Cepci(props) {
 		});
 
 		$('body').on('click', $c2, function (e) {
-			if ($(".cepci_2").filter(":checked").length >= 2) {
+			if ($(".cepci_2").filter(":checked").length >= 1) {
 				$(".cepci_2").filter(":not(:checked)").prop("disabled", true);
 			} else {
 				$(".cepci_2").prop("disabled", false);
@@ -406,7 +406,7 @@ function Cepci(props) {
 		});
 
 		$('body').on('click', $c3, function (e) {
-			if ($(".cepci_3").filter(":checked").length >= 2) {
+			if ($(".cepci_3").filter(":checked").length >= 1) {
 				$(".cepci_3").filter(":not(:checked)").prop("disabled", true);
 			} else {
 				$(".cepci_3").prop("disabled", false);
@@ -480,11 +480,11 @@ function Cepci(props) {
 						<li class="enlace" onClick={inicio}>Inicio</li>
 						<li class="active"><Link class="nav-link">CEPCI 2023-2026</Link></li>
 					</ol>
-					{/*<div id="send" class="hidden flotante send" style={{ right: 50, zIndex: 9999 }}>
+					<div id="send" class="hidden flotante send" style={{ right: 50, zIndex: 9999 }}>
 						<div class="bottom-buffer" style={{ cursor: "pointer" }}>
 							<i onClick={send_evaluacion} class="fas fa-paper-plane"></i>
 						</div>
-	</div>*/}
+					</div>
 					<div class="eval">
 
 						<div class="busca">

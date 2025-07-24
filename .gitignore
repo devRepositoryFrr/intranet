@@ -35,6 +35,7 @@ yarn-error.log*
 **/img
 **/ntf
 /RV ORGANIGRAMAS
+<<<<<<< HEAD
 public/1.jpg
 public/2.JPG
 public/3.jpg
@@ -1193,3 +1194,6 @@ nominas/2025/XML_11_14/2025_1_11_14_00800200.xml
 nominas/2025/XML_11_14/2025_1_11_14_00800201.xml
 nominas/2025/XML_11_14/2025_1_11_14_00800203.xml
 nominas/2025/XML_11_14/2025_1_11_14_00800207.xml
+=======
+/public
+>>>>>>> 57a49983d632e7cdb149274f163d676a880a8a77

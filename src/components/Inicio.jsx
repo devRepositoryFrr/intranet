@@ -1513,12 +1513,12 @@ function Inicio(props) {
 							<div class="ntf-list"></div>
 						</div>
 					</div>
-					<div class="row"><div class="col-md-12">
+					{/*<div class="row"><div class="col-md-12">
 					<a href="https://declaranet.gob.mx/" target={"_blank"}>
 								<img class="dnet9 img-responsive" />
 
 							</a>
-						</div></div>
+						</div></div>*/}
 						<br></br>
 					<SystemsGalery />
 					<div class="top-buffer"></div>
@@ -1545,7 +1545,7 @@ function Inicio(props) {
 							</a>*/}
 						</div>
 					</div>
-					<div ></div><strong><h10>Proceso de renovación del Comité de Ética y de Conflictos de  Interés de la CONAVI</h10></strong>
+					<div ></div><strong><h10>“Proceso de elección de los niveles representativos faltantes en el Comité de Ética de la CONAVI”</h10></strong>
 					<hr class="red"></hr>
 					<div class="cepci-vot bottom-buffer">
 						<div class="">

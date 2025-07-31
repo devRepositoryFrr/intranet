@@ -25,7 +25,6 @@ import Etica from "./components/etica.jsx";
 import CtrlAcceso from "./components/CtrlAcceso.jsx";
 import CtrlVehicular from "./components/CtrlVehicular.jsx";
 
-
 function App() {
 	return (
 		<div className="App">
@@ -55,7 +54,6 @@ function App() {
 					<Route path="/ModalCn" exact component={() => <Nomina />} />
 					<Route path="/CtrlAcceso" exact component={() => <CtrlAcceso />} />
 					<Route path="/CtrlVehicular" exact component={() => <CtrlVehicular />} />
-					
 				</Switch>
 			</HashRouter>
 

@@ -478,7 +478,7 @@ function Cepci(props) {
 					<ol id="bread" class="breadcrumb">
 						<li><a href=""><i class="icon icon-home"></i></a></li>
 						<li class="enlace" onClick={inicio}>Inicio</li>
-						<li class="active"><Link class="nav-link">CEPCI 2023-2026</Link></li>
+						<li class="active"><Link class="nav-link">CE 2025</Link></li>
 					</ol>
 					<div id="send" class="hidden flotante send" style={{ right: 50, zIndex: 9999 }}>
 						<div class="bottom-buffer" style={{ cursor: "pointer" }}>

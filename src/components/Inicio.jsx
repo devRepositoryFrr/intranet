@@ -30,12 +30,12 @@ import '../assets/css/datepicker.css';
 import '../assets/css/emergente.css';
 import audio from '../assets/ntf/ntf.wav';
 import id from 'date-fns/esm/locale/id/index.js';
-
+import { getUserCredenciales } from '../utils/storage';
 import Alert from '../assets/js/Alerta.js';
 import Axios from 'axios';
 import SystemsGalery from './SystemsGalery';
 const apiKey = process.env.REACT_APP_API_KEY;
-
+const user = getUserCredenciales();
 let modulo = "Inicio";
 let tries = 0;
 var _currentTime = new Date()
@@ -45,8 +45,6 @@ const scroll = (id) => {
 		let el = document.getElementById(id);
 		el.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
 	} catch (e) { }
-
-
 }
 
 const validarPsw = () => {
@@ -83,11 +81,11 @@ const validarPsw = () => {
 const submitPsw = () => {
 	if (validarPsw()) {
 
-		var user_ = JSON.parse(localStorage.getItem('credenciales'));
+		//var user = JSON.parse(localStorage.getItem('credenciales'));
 		Axios.post(apiKey + '/api/cambio_contrasena', {
 
 			password: $("#n_password").val(),
-			email: user_[0].email,
+			email: user[0].email,
 		}).then(
 			(response) => {
 
@@ -124,10 +122,10 @@ function difusion() {
 }
 
 function comeri() {
-	var user_ = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 	scroll("bread");
 	window.location.href = "/int/#/Comeri";
-	$("#cboUsuario_pn").append("<option value='" + user_[0].email + "'>" + user_[0].nombre + "</option>");
+	$("#cboUsuario_pn").append("<option value='" + user[0].email + "'>" + user[0].nombre + "</option>");
 }
 
 function obtenerDirectorio(tipo) {
@@ -176,7 +174,7 @@ console.log(data);
 
 function obtenerReservaciones() {
 
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 
 	$.getJSON( apiKey+ "/api/ver_reservaciones/" + user[0].email, function (data) {
 		var items = [];
@@ -319,7 +317,7 @@ function obtenerTipoSoporte() {
 }
 
 function obtenerStatusTicket() {
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 
 	$.getJSON( apiKey + "/api/ver_tickets/" + user[0].email, function (data) {
 		var items = [];
@@ -500,7 +498,7 @@ const load = () => {
 	script.async = true;
 	document.body.appendChild(script);
 	var fnac = "";
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 	var flag = JSON.parse(localStorage.getItem('flag'));
 	$.each(user, function (key, val) {
 		$("#usr").text(val.nombre);
@@ -543,13 +541,13 @@ const load = () => {
 
 	var Permisos = [];
 	var Modulos = [];
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 
 	$.each(user, function (key, val) {
 		Permisos = val.permisos.split(",");
 		Modulos = val.modulos.split(",");
 	});
-
+//console.log(Permisos)
 	for (var i = 0; i < Modulos.length; i++) {
 
 		if (Permisos.toString().match(Modulos[i])) {
@@ -610,7 +608,7 @@ const add_bt = () => {
 	$('html').css("overflow", "hidden");
 	$("#content-bt").css("display", "block");
 
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 	$("#cboUsuario").append("<option value='" + user[0].email + "'>" + user[0].nombre + "</option>");
 
 }
@@ -624,7 +622,7 @@ const add_lb = () => {
 }
 
 const add_sac = () => {
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 	$("#cboUsuario_s").append("<option value='" + user[0].email + "'>" + user[0].nombre + "</option>");
 
 
@@ -634,7 +632,7 @@ const add_sac = () => {
 }
 
 const add_svh = () => {
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 	$("#cboUsuario_v").append("<option value='" + user[0].email + "'>" + user[0].nombre + "</option>");
 
 	$("#modal").css("display", "block");
@@ -645,7 +643,7 @@ const add_svh = () => {
 
 const add_asis = (tipo) => {
 
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 	disabled_button("btnGuardar-sp");
 	$("#modal").css("display", "block");
 	$('html').css("overflow", "hidden");
@@ -661,7 +659,7 @@ const add_asis = (tipo) => {
 //consulta de nómina
 
 const open_cn = () => {
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 	$("#modal").css("display", "block");
 	$('html').css("overflow", "hidden");
 	$("#content-cn").css("display", "block");
@@ -710,7 +708,7 @@ const open_dt = (tipo) => {
 //abrir nuevo ticket
 const open_nticket = (tipo) => {
 
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 	disabled_button("btnGuardar-sp");
 	$("#modal").css("display", "block");
 	$('html').css("overflow", "hidden");
@@ -1329,8 +1327,10 @@ export function asistencia() {
 	$('body').on('click', '#asist_', function () {
 		add_asis();
 	});
-	var user_ = (JSON.parse(localStorage.getItem('credenciales'))==null)?JSON.parse('[{"email":"notloged","nombre":""}]'):user_=JSON.parse(localStorage.getItem('credenciales'));
-	const email = user_[0].email;
+	//var user = (JSON.parse(localStorage.getItem('credenciales'))==null)?JSON.parse('[{"email":"notloged","nombre":""}]'):user=JSON.parse(localStorage.getItem('credenciales'));
+	//console.log("usuario: ",user)
+	const email = user[0].email;
+	console.log(email)
 	const d = new Date().toLocaleDateString('en-CA');
 	const h = new Date().toLocaleTimeString("en-US", { hour12: false });
 	//console.log(email)
@@ -1374,19 +1374,23 @@ function addEnlacesCn() {
 }
 
 function Inicio(props) {
-	const isLogged = localStorage.getItem('credenciales');
-	let datos = JSON.parse(isLogged);
+	//const isLogged = localStorage.getItem('credenciales');
+	//let datos = JSON.parse(isLogged);
 	useEffect(() => {
 
+    if (!user) {
+      window.location.href = "/int/#/";
+      //return;
+    }
 
 		asistencia();
 		//firework()
-		if (!isLogged) {
+		if (!user) {
 			out();
 
 		} else {
 			
-			if (datos[0].expires == null || Date.parse(datos[0].expires) < Date.parse(_currentTime)) {
+			if (user[0].expires == null || Date.parse(user[0].expires) < Date.parse(_currentTime)) {
 				out();
 			} else {
 				jqu();

@@ -15,6 +15,7 @@ import '../../assets/js/jquery.serializeToJSON.js';
 import '../../assets/js/soporte.js'; 
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { getUserCredenciales } from '../../utils/storage';
 
 var api_cnfg = "https://sistemaintegral.conavi.gob.mx:81";
 //var api_cnfg = "http://localhost:3001";
@@ -81,11 +82,16 @@ export default function ModalCn() {
   //const [nomina, setData] = useState(null);
    
 useEffect(() => {
-  const user = JSON.parse(localStorage.getItem('credenciales'));
-  let empleado = "00000000";
-  if(user[0].num_empleado != null){
-  empleado = user[0].num_empleado.toString().padStart(8,0)
-  }
+  let empleado;
+  const user = getUserCredenciales();
+    if (!user) {
+      window.location.href = "/int/#/";
+      return;
+    }
+    $.each(user, function (key, val) {
+      empleado = val.num_empleado.toString().padStart(8,0);
+      //console.log(empleado)
+    });
   //var data ={}; // {"name":"nominas","type":"directory","children":[{"name":"2024","type":"directory","children":[{"name":"PDF_11_14","type":"directory","children":[{"name":"2024_1_11_14_00800197.Pdf","type":"file"},{"name":"2024_1_11_14_00800198.Pdf","type":"file"},{"name":"2024_1_11_14_00800200.Pdf","type":"file"},{"name":"2024_1_11_14_00800201.Pdf","type":"file"},{"name":"2024_1_11_14_00800203.Pdf","type":"file"},{"name":"2024_1_11_14_00800207.Pdf","type":"file"}]},{"name":"XML_11_14","type":"directory","children":[{"name":"2024_1_11_14_00800197.xml","type":"file"},{"name":"2024_1_11_14_00800198.xml","type":"file"},{"name":"2024_1_11_14_00800200.xml","type":"file"},{"name":"2024_1_11_14_00800201.xml","type":"file"},{"name":"2024_1_11_14_00800203.xml","type":"file"},{"name":"2024_1_11_14_00800207.xml","type":"file"}]}]},{"name":"2025","type":"directory","children":[{"name":"PDF_11_14","type":"directory","children":[{"name":"2025_1_11_14_00800197.Pdf","type":"file"},{"name":"2025_1_11_14_00800198.Pdf","type":"file"},{"name":"2025_1_11_14_00800200.Pdf","type":"file"},{"name":"2025_1_11_14_00800201.Pdf","type":"file"},{"name":"2025_1_11_14_00800203.Pdf","type":"file"},{"name":"2025_1_11_14_00800207.Pdf","type":"file"}]},{"name":"XML_11_14","type":"directory","children":[{"name":"2025_1_11_14_00800197.xml","type":"file"},{"name":"2025_1_11_14_00800198.xml","type":"file"},{"name":"2025_1_11_14_00800200.xml","type":"file"},{"name":"2025_1_11_14_00800201.xml","type":"file"},{"name":"2025_1_11_14_00800203.xml","type":"file"},{"name":"2025_1_11_14_00800207.xml","type":"file"}]}]}]};
    const getNomina = async () => {
     try {

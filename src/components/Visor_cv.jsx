@@ -7,9 +7,11 @@ import Alerta from './Alerta';
 import Alerta_ from '../assets/js/Alerta';
 import { useEffect } from 'react';
 import '../assets/css/checks.css'
+import { getUserCredenciales } from '../utils/storage';
 
 var email = "";
 var is_restrict = "";
+const user = getUserCredenciales();
 
 const out = () => {
 	$(".navbar").remove();
@@ -33,7 +35,7 @@ const load = () => {
 		script.src = "https://framework-gb.cdn.gob.mx/gobmx.js";
 		script.async = true;
 		document.body.appendChild(script);
-		let user = JSON.parse(localStorage.getItem('credenciales'));
+		//let user = JSON.parse(localStorage.getItem('credenciales'));
 
 		$.each(user, function (key, val) {
 			$("#usr").text(val.nombre);
@@ -62,9 +64,9 @@ const load = () => {
 }
 
 const consultar = () => {
-	var user_ = JSON.parse(localStorage.getItem('credenciales'));
+//	var user_ = JSON.parse(localStorage.getItem('credenciales'));
 	console.log()
-	let pr = user_[0].permisos;
+	let pr = user[0].permisos;
 	var del = '';
 	if (pr.match("adms-delpos")) {
 		del = "1"
@@ -102,11 +104,16 @@ const consultar = () => {
 
 function VisorCV(props) {
 	useEffect(() => {
-		const isLogged = localStorage.getItem('credenciales');
+		const user = getUserCredenciales();
+  		  if (!user) {
+    	  window.location.href = "/int/#/";
+   	   return;
+   		 }
+		//const isLogged = localStorage.getItem('credenciales');
 
 		var Permisos = [];
 		var Modulos = [];
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+		//var user = JSON.parse(localStorage.getItem('credenciales'));
 
 		$.each(user, function (key, val) {
 			Permisos = val.permisos.split(",");
@@ -133,9 +140,9 @@ function VisorCV(props) {
 		if (is_restrict == "SI") {
 			out();
 		}
-		if (!isLogged) {
+		if (!user) {
 			out();
-		} else if (isLogged) {
+		} else if (user) {
 			load();
 		}
 

@@ -15,12 +15,14 @@ import '../assets/css/datepicker.css';
 import '../assets/css/emergente.css';
 import Alerta_ from '../assets/js/Alerta.js';
 import ModalFile from '../components/modal/modalFile.jsx'
+import { getUserCredenciales } from '../utils/storage';
 
 
 
 import { Redirect, Link, useHistory } from "react-router-dom";
 import Inicio from './Inicio.jsx';
 import { useEffect } from 'react';
+const user = getUserCredenciales();
 
 const scroll = (id) => {
 	let el = document.getElementById(id);
@@ -36,7 +38,7 @@ const load = () => {
 		script.async = true;
 		document.body.appendChild(script);
 
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+		//var user = JSON.parse(localStorage.getItem('credenciales'));
 		$.each(user, function (key, val) {
 			$("#usr").text(val.nombre);
 		});
@@ -483,13 +485,18 @@ function obtenerSubtitulosNt() {
 
 function Documentos(props) {
 	var is_restrict = "";
-	const isLogged = localStorage.getItem('credenciales');
+//	const isLogged = localStorage.getItem('credenciales');
 	useEffect(() => {
+		const user = getUserCredenciales();
+  		  if (!user) {
+    	  window.location.href = "/int/#/";
+    	  return;
+ 		   }
 		
 
 		var Permisos = [];
 		var Modulos = [];
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+		//var user = JSON.parse(localStorage.getItem('credenciales'));
 
 		$.each(user, function (key, val) {
 			Permisos = val.permisos.split(",");
@@ -513,7 +520,7 @@ function Documentos(props) {
 	if (is_restrict == "SI") {
 		out();
 	}
-	else if (!isLogged) {
+	else if (!user) {
 		out();
 		return (
 			<header></header>

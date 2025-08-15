@@ -8,8 +8,9 @@ import Alerta_ from '../assets/js/Alerta';
 import { useEffect } from 'react';
 import '../assets/css/checks.css'
 import https from 'https'
+import { getUserCredenciales } from '../utils/storage';
 
-
+const user = getUserCredenciales();
 var email = "";
 var is_restrict = "";
 Axios.defaults.httpsAgent = new https.Agent({ rejectUnauthorized: false });
@@ -35,7 +36,7 @@ const load = () => {
 		script.src = "https://framework-gb.cdn.gob.mx/gobmx.js";
 		script.async = true;
 		document.body.appendChild(script);
-		let user = JSON.parse(localStorage.getItem('credenciales'));
+		//let user = JSON.parse(localStorage.getItem('credenciales'));
 
 		$.each(user, function (key, val) {
 			$("#usr").text(val.nombre);
@@ -85,6 +86,7 @@ function btn(xaction) {
 function consulta() {
 
 	let usr = JSON.parse(localStorage.getItem('credenciales'));
+	console.log(usr);
 
 	let user = usr[0].email;
 
@@ -141,11 +143,16 @@ function consulta() {
 
 function ConsultaRenapo(props) {
 	useEffect(() => {
-		const isLogged = localStorage.getItem('credenciales');
+	const user = getUserCredenciales();
+   	 if (!user) {
+      window.location.href = "/int/#/";
+      return;
+   		 }
+		//const isLogged = localStorage.getItem('credenciales');
 
 		var Permisos = [];
 		var Modulos = [];
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+		//var user = JSON.parse(localStorage.getItem('credenciales'));
 
 		$.each(user, function (key, val) {
 			Permisos = val.permisos.split(",");
@@ -172,9 +179,9 @@ function ConsultaRenapo(props) {
 		if (is_restrict == "SI") {
 			out();
 		}
-		if (!isLogged) {
+		if (!user) {
 			out();
-		} else if (isLogged) {
+		} else if (user) {
 			load();
 		}
 

@@ -16,10 +16,12 @@ import '../assets/js/jquery.serializeToJSON'
 import Alerta_ from '../assets/js/Alerta.js';
 import ModalFile from '../components/modal/modalFile';
 import { useEffect } from 'react';
+import { getUserCredenciales } from '../utils/storage';
 
 
 import { Redirect, Link, useHistory } from "react-router-dom";
 import Inicio from './Inicio.jsx';
+ const user = getUserCredenciales();
 
 var pn = 1;
 var sc = 1;
@@ -619,6 +621,12 @@ const inicio = () => {
 
 function Comeri(props) {
 	useEffect(() => {
+		 let empleado;
+ 		 const user = getUserCredenciales();
+   		 if (!user) {
+    	  window.location.href = "/int/#/";
+     	 return;
+  			  }
 		$('body').on('click', 'i', function (e) {
 			if (e.target.className === "act gold enlace fas fa-sync-alt") {
 				$('body').on('click', 'i', function (e) {
@@ -640,23 +648,23 @@ function Comeri(props) {
 
 	});
 	var is_restrict = "";
-	const isLogged = localStorage.getItem('credenciales');
+	//const isLogged = localStorage.getItem('credenciales');
 
 	var Permisos = [];
 	var Modulos = [];
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 
 	$.each(user, function (key, val) {
 		Permisos = val.permisos.split(",");
 		Modulos = val.modulos.split(",");
 	});
 
-	if (!isLogged) {
+	if (!user) {
 		out();
 		return (
 			<header></header>
 		);
-	} else if (isLogged) {
+	} else if (user) {
 		load();
 
 

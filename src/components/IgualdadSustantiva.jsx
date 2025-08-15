@@ -14,6 +14,7 @@ import '../assets/css/datepicker.css';
 import '../assets/css/emergente.css';
 import '../assets/js/jquery.serializeToJSON'
 import Alerta_ from '../assets/js/Alerta.js';
+import { getUserCredenciales } from '../utils/storage';
 
 
 
@@ -24,6 +25,7 @@ import Inicio from './Inicio.jsx';
 
 let modulo = "Galeria";
 let val = 0;
+ const user = getUserCredenciales();
 
 
 const visita = (email) => {
@@ -51,7 +53,7 @@ const load = () => {
 		script.async = true;
 		document.body.appendChild(script);
 
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+		//var user = JSON.parse(localStorage.getItem('credenciales'));
 		$.each(user, function (key, val) {
 			$("#usr").text(val.nombre);
 
@@ -131,13 +133,18 @@ const consultar = () => {
 function IgualdadSustantiva(props) {
 
 	useEffect(() => {
+		 const user = getUserCredenciales();
+ 	 	  if (!user) {
+    	  window.location.href = "/int/#/";
+    	  return;
+  		  }
 
 		visita($("#usr").text());
 		let el = document.getElementById("bread");
 		el.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
 
 		var is_restrict = "";
-		const isLogged = localStorage.getItem('credenciales');
+		//const isLogged = localStorage.getItem('credenciales');
 
 		$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/ver_visitas_igsu", function (data) {
 
@@ -153,11 +160,11 @@ function IgualdadSustantiva(props) {
 
 
 
-		if (!isLogged) {
+		if (!user) {
 
 			out();
 
-		} else if (isLogged) {
+		} else if (user) {
 			consultar()
 			load();
 		}

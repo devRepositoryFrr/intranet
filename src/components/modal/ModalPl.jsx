@@ -4,12 +4,15 @@ import '../../assets/css/modal.css';
 import '../../assets/css/content.css';
 import '../../assets/css/listas.css';
 import '../../assets/css/menu-list.css';
+import { getUserCredenciales } from '../../utils/storage';
 
 
 
 
-
-
+ const user = getUserCredenciales();
+    if (!user) {
+      window.location.href = "/int/#/";
+        }
 
 export default function ModalDt() {
 

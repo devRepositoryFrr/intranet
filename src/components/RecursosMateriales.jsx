@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import Accesibilidad from './Accesibilidad'
 import GaleriaHeader from './GaleriaHeader'
 import { useEffect } from 'react';
+import { getUserCredenciales } from '../utils/storage';
 const out = () => {
     $(".navbar").remove();
     $(".main-footer").remove();
@@ -19,15 +20,20 @@ const inicio = () => {
 
 function Materiales(props) {
     var is_restrict = "";
-    const isLogged = localStorage.getItem('credenciales');
+   // const isLogged = localStorage.getItem('credenciales');
     useEffect(() => {
+         const user = getUserCredenciales();
+             if (!user) {
+             window.location.href = "/int/#/";
+             return;
+                  }
 
 
         var Permisos = [];
         var Modulos = [];
-        var user = JSON.parse(localStorage.getItem('credenciales'));
+        //var user = JSON.parse(localStorage.getItem('credenciales'));
 
-        var user = JSON.parse(localStorage.getItem('credenciales'));
+        //var user = JSON.parse(localStorage.getItem('credenciales'));
         $.each(user, function (key, val) {
             $("#usr").text(val.nombre);
         });

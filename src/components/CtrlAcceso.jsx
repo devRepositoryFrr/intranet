@@ -21,6 +21,7 @@ import Alerta_ from '../assets/js/Alerta.js';
 
 import { Redirect, Link, useHistory } from "react-router-dom";
 import Inicio from './Inicio.jsx';
+import { getUserCredenciales } from '../utils/storage';
 const FileDownload = require('js-file-download');
 var xlsx = require("xlsx");
 var user = '';
@@ -92,7 +93,7 @@ function tabla(json) {
 }
 
 function getAcceso() {
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 	let mes = $("#cmbMes").val();
 	//console.log("acceso")
 	//console.log(mes)
@@ -142,7 +143,7 @@ const load = () => {
 		script.async = true;
 		document.body.appendChild(script);
 
-		user = JSON.parse(localStorage.getItem('credenciales'));
+	//	user = JSON.parse(localStorage.getItem('credenciales'));
 		//console.log(user);
 		$.each(user, function (key, val) {
 			$("#usr").text(val.nombre);
@@ -191,13 +192,18 @@ const inicio = () => {
 function CtrlAcceso(props) {
 
 	useEffect(() => {
+		 const user = getUserCredenciales();
+   		 if (!user) {
+     		 window.location.href = "/int/#/";
+     		 return;
+   			 }
 		//console.log("Entro")
 		getAcceso();
 		visita($("#usr").text());
 		let el = document.getElementById("bread");
 		el.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
 
-		const isLogged = localStorage.getItem('credenciales');
+	//	const isLogged = localStorage.getItem('credenciales');
 
 		$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/ver_visitas_igsu", function (data) {
 
@@ -213,11 +219,11 @@ function CtrlAcceso(props) {
 
 
 
-		if (!isLogged) {
+		if (!user) {
 
 			out();
 
-		} else if (isLogged) {
+		} else if (user) {
 			load();
 
 		}

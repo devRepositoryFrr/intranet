@@ -14,9 +14,13 @@ import deLocale from "date-fns/locale/es";
 import { useState } from 'react';
 import Axios from 'axios';
 import moment from 'moment';
+import { getUserCredenciales } from '../../utils/storage';
 
 
-
+const user = getUserCredenciales();
+    if (!user) {
+      window.location.href = "/int/#/";
+          }
 
 export default function ModalNtf() {
 	//setFechas

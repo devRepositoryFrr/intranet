@@ -9,8 +9,11 @@ import Alert from '../../assets/js/Alerta.js';
 
 import Axios from 'axios';
 import { useEffect } from 'react';
+import { getUserCredenciales } from '../../utils/storage';
 
 
+
+const user = getUserCredenciales();
 const host = "https://sistemaintegral.conavi.gob.mx:81";
 //const host = "http://localhost:3001";
 
@@ -132,7 +135,7 @@ export default function ModalSvh() {
 		let fechaf = d2.toLocaleDateString() + " " + formattedTime.toString();
 		
 
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+		// var user = JSON.parse(localStorage.getItem('credenciales'));
 		let puesto_a = $('#Jefe_v').find('option:selected').attr('puesto');
 		let nombre_a = $('#Jefe_v').find('option:selected').attr('nombre');
 		let email_a = $('#Jefe_v').find('option:selected').attr('email');
@@ -243,6 +246,11 @@ export default function ModalSvh() {
 	}
 */
 	useEffect(() => {
+		const user = getUserCredenciales();
+   		 if (!user) {
+     		 window.location.href = "/int/#/";
+    		  return;
+  		  }
 
 	//	maxdate();
 		$.getJSON(host + "/api/get_datos_puestos", function (respuesta) {

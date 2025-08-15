@@ -7,6 +7,7 @@ import Alerta from './Alerta';
 import Alerta_ from '../assets/js/Alerta';
 import { useEffect } from 'react';
 import '../assets/css/checks.css'
+import { getUserCredenciales } from '../utils/storage';
 
 var email = "";
 var is_restrict = "";
@@ -160,12 +161,18 @@ function CargaCV(props) {
 
 
 	useEffect(() => {
+		let empleado;
+ 	 	const user = getUserCredenciales();
+   		 if (!user) {
+     	 window.location.href = "/int/#/";
+     	 return;
+  			 }
 
-		const isLogged = localStorage.getItem('credenciales');
+		//const isLogged = localStorage.getItem('credenciales');
 
 		var Permisos = [];
 		var Modulos = [];
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+	//	var user = JSON.parse(localStorage.getItem('credenciales'));
 
 		$.each(user, function (key, val) {
 			Permisos = val.permisos.split(",");
@@ -190,9 +197,9 @@ function CargaCV(props) {
 		if (is_restrict == "SI") {
 			out();
 		}
-		if (!isLogged) {
+		if (!user) {
 			out();
-		} else if (isLogged) {
+		} else if (user) {
 			load();
 		}
 	});

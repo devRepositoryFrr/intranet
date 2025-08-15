@@ -21,6 +21,7 @@ import Alerta_ from '../assets/js/Alerta.js';
 
 import { Redirect, Link, useHistory } from "react-router-dom";
 import Inicio from './Inicio.jsx';
+import { getUserCredenciales } from '../utils/storage';
 const FileDownload = require('js-file-download');
 var xlsx = require("xlsx");
 var user = '';
@@ -78,7 +79,7 @@ const load = () => {
 		script.async = true;
 		document.body.appendChild(script);
 
-		user = JSON.parse(localStorage.getItem('credenciales'));
+	//	user = JSON.parse(localStorage.getItem('credenciales'));
 		//console.log(user);
 		$.each(user, function (key, val) {
 			$("#usr").text(val.nombre);
@@ -263,12 +264,17 @@ const exportar = async () => {
 function CtrlAsistencia(props) {
 
 	useEffect(() => {
+		 const user = getUserCredenciales();
+  		  if (!user) {
+     		 window.location.href = "/int/#/";
+    		  return;
+   			 }
 
 		visita($("#usr").text());
 		let el = document.getElementById("bread");
 		el.scrollIntoView({ behavior: "smooth", block: "center", inline: "nearest" });
 
-		const isLogged = localStorage.getItem('credenciales');
+		//const isLogged = localStorage.getItem('credenciales');
 
 		$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/ver_visitas_igsu", function (data) {
 
@@ -284,11 +290,11 @@ function CtrlAsistencia(props) {
 
 
 
-		if (!isLogged) {
+		if (!user) {
 
 			out();
 
-		} else if (isLogged) {
+		} else if (user) {
 			load();
 			getAreas();
 		}

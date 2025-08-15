@@ -16,8 +16,9 @@ import { useState } from 'react';
 import Axios from 'axios';
 import moment from 'moment';
 import Alert from '../../assets/js/Alerta';
+import { getUserCredenciales } from '../../utils/storage';
 
-
+ const user = getUserCredenciales();
 
 
 
@@ -42,7 +43,7 @@ export default function ModalSpa() {
 	}
 
 	const submitAsignacion = () => {
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+		// var user = JSON.parse(localStorage.getItem('credenciales'));
 
 		Axios.post('https://sistemaintegral.conavi.gob.mx:81/api/asignar_ticket', {
 			usuario: user[0].email,
@@ -69,7 +70,7 @@ export default function ModalSpa() {
 
 	const submitCierre = () => {
 
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+		// var user = JSON.parse(localStorage.getItem('credenciales'));
 
 		Axios.post('https://sistemaintegral.conavi.gob.mx:81/api/cerrar_ticket', {
 			fecha_cierre: moment(txt_fecha_cierre).format('YYYY-MM-DD'),
@@ -108,6 +109,11 @@ export default function ModalSpa() {
 	}
 
 	useEffect(() => {
+		 const user = getUserCredenciales();
+   			 if (!user) {
+     		 window.location.href = "/int/#/";
+    		  return;
+  			  }
 		disabled_button("btnCerrado-spa_");
 	});
 

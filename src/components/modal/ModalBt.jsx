@@ -14,9 +14,13 @@ import deLocale from "date-fns/locale/es";
 import { useState } from 'react';
 import Axios from 'axios';
 import moment from 'moment';
+import { getUserCredenciales } from '../../utils/storage';
 
 
-
+ const user = getUserCredenciales();
+    if (!user) {
+      window.location.href = "/int/#/";
+        }
 
 export default function ModalBt() {
 	var mail_ =(JSON.parse(localStorage.getItem('credenciales'))==null)?JSON.parse('[{"email":"notLoged","nombre":""}]'):mail_ = JSON.parse(localStorage.getItem('credenciales'));
@@ -162,7 +166,7 @@ export default function ModalBt() {
 					}
 					
 
-					var user = JSON.parse(localStorage.getItem('credenciales'));
+					//var user = JSON.parse(localStorage.getItem('credenciales'));
 					if (response.data != "") {
 
 						Alert("¡Reservaste una sala con<strong> éxito</strong>!", "alertaOp alert alert-success alert-dismissible");

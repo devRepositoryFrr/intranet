@@ -14,14 +14,11 @@ import '../assets/css/datepicker.css';
 import '../assets/css/emergente.css';
 import '../assets/js/jquery.serializeToJSON'
 import Alerta_ from '../assets/js/Alerta.js';
-
-
-
-
-
+import { getUserCredenciales } from '../utils/storage';
 import { Redirect, Link, useHistory } from "react-router-dom";
 import Inicio from './Inicio.jsx';
 let val = 0;
+const user = getUserCredenciales();
 
 var modal =
 	'<div class="modal-content">' +
@@ -91,7 +88,7 @@ const load = () => {
 		script.async = true;
 		document.body.appendChild(script);
 
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 		$.each(user, function (key, val) {
 			$("#usr").text(val.nombre);
 		});
@@ -399,6 +396,10 @@ function insertar(descripcion) {
 function Personal(props) {
 
 	useEffect(() => {
+		const user = getUserCredenciales();
+  	  	if (!user) {
+     	 window.location.href = "/int/#/";
+    	  return;}
 		puestos_areas();
 		$(".modal").on("click", "#add_psto", function () {
 
@@ -409,11 +410,11 @@ function Personal(props) {
 	});
 
 	var is_restrict = "";
-	const isLogged = localStorage.getItem('credenciales');
+	//const isLogged = localStorage.getItem('credenciales');
 
 	var Permisos = [];
 	var Modulos = [];
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 
 	$.each(user, function (key, val) {
 		Permisos = val.permisos.split(",");
@@ -436,12 +437,12 @@ function Personal(props) {
 	if (is_restrict == "SI") {
 		out();
 	}
-	else if (!isLogged) {
+	else if (!user) {
 		out();
 		return (
 			<header></header>
 		);
-	} else if (isLogged) {
+	} else if (user) {
 		load();
 		
 		return (

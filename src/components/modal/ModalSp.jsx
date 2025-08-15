@@ -8,10 +8,12 @@ import React, { useState, useEffect } from 'react';
 import Alert from '../../assets/js/Alerta.js';
 import Axios from 'axios';
 import { disabled_button, enabled_button } from '../../assets/js/botones'
+import { getUserCredenciales } from '../../utils/storage';
+const user = getUserCredenciales();
 function obtenerTipoSoporte() {
 
-
-	var user = (JSON.parse(localStorage.getItem('credenciales')) == null) ? JSON.parse('[{"email":"notloged","nombre":""}]') : user = JSON.parse(localStorage.getItem('credenciales'));
+console.log("soporte: ",user)
+	//var user = (JSON.parse(localStorage.getItem('credenciales')) == null) ? JSON.parse('[{"email":"notloged","nombre":""}]') : user = JSON.parse(localStorage.getItem('credenciales'));
 	$.each(user[0], function (key, value) {
 		$("#soporte_txt" + key).text(value);
 	});
@@ -34,6 +36,12 @@ let subject = "soportesistemas@conavi.gob.mx";
 
 export default function ModalSp() {
 	useEffect(() => {
+		 const user = getUserCredenciales();
+   			 if (!user) {
+    		  window.location.href = "/int/#/";
+     		 return;
+   			 }
+			 console.log("sp: ",user)
 		limpiar();
 		obtenerTipoSoporte();
 
@@ -156,7 +164,7 @@ export default function ModalSp() {
 		return x[i - 1];
 	}
 	const submitInsert = () => {
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+		//var user = JSON.parse(localStorage.getItem('credenciales'));
 		let ext1 = getExtension($("#f-sp1").val());
 		let ext2 = getExtension($("#f-sp2").val());
 		let ext3 = getExtension($("#f-sp3").val());

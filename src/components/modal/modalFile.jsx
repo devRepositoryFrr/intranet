@@ -5,6 +5,7 @@ import '../../assets/css/content.css';
 import { useEffect } from 'react';
 import Axios from 'axios';
 import Alerta_ from '../../assets/js/Alerta.js';
+import { getUserCredenciales } from '../../utils/storage';
 
 
 const submitFile = () => {
@@ -92,6 +93,11 @@ export default function ModalDt() {
 
 
     useEffect(() => {
+        const user = getUserCredenciales();
+         if (!user) {
+         window.location.href = "/int/#/";
+          return;
+         }
 
     });
 

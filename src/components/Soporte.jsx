@@ -13,16 +13,20 @@ import '../assets/css/notificacion.css';
 import '../assets/css/listas.css';
 import '../assets/css/datepicker.css';
 import '../assets/css/emergente.css';
-
+import { getUserCredenciales } from '../utils/storage';
 
 
 
 
 import { Redirect, Link, useHistory } from "react-router-dom";
 import Inicio from './Inicio.jsx';
+ const user = getUserCredenciales();
+    if (!user) {
+      window.location.href = "/int/#/";
+          }
 
 function verTickets(tipo) {
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 
 
 	var fecha = ""
@@ -40,7 +44,7 @@ function verTickets(tipo) {
 
 function obtenerTotales() {
 
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 
 	$.getJSON("https://sistemaintegral.conavi.gob.mx:81/api/tickets_count/" + user[0]["email"], function (data) {
 		$.each(data, function (key, val) {
@@ -60,7 +64,7 @@ const load = () => {
 		script.async = true;
 		document.body.appendChild(script);
 
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+		//var user = JSON.parse(localStorage.getItem('credenciales'));
 		$.each(user, function (key, val) {
 			$("#usr").text(val.nombre);
 		});
@@ -229,11 +233,11 @@ const open_Spa = (id) => {
 
 function Soporte(props) {
 	var is_restrict = "";
-	const isLogged = localStorage.getItem('credenciales');
+	//const isLogged = localStorage.getItem('credenciales');
 
 	var Permisos = [];
 	var Modulos = [];
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 
 	$.each(user, function (key, val) {
 		Permisos = val.permisos.split(",");
@@ -256,7 +260,7 @@ function Soporte(props) {
 	if (is_restrict == "SI") {
 		out();
 	}
-	else if (!isLogged) {
+	else if (!user) {
 		out();
 		return (
 			<header></header>

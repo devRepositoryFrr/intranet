@@ -7,10 +7,16 @@ import '../../assets/css/reservacion.css';
 import '../../assets/js/reservacion.js';
 import '../../assets/js/directorio.js';
 import '../../assets/css/directorio.css';
+import { getUserCredenciales } from '../../utils/storage';
+
+const user = getUserCredenciales();
+    if (!user) {
+      window.location.href = "/int/#/";
+      }
 
 export default function ModalSpV() {
 
-
+   
 
 	const limpiar = () => {
 		$("#modal").css("display", "none");

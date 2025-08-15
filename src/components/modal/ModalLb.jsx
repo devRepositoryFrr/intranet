@@ -5,6 +5,13 @@ import '../../assets/css/content.css';
 import '../../assets/css/listas.css';
 import '../../assets/css/reservacion.css';
 import '../../assets/js/reservacion.js';
+import { getUserCredenciales } from '../../utils/storage';
+
+
+const user = getUserCredenciales();
+ 	   if (!user) {
+    	  window.location.href = "/int/#/";
+          }
 
 export default function ModalBt() {
 

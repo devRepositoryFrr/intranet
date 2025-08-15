@@ -7,17 +7,21 @@ import '../../assets/css/bitacora.css';
 
 import Alert from '../../assets/js/Alerta.js';
 import Axios from 'axios';
+import { getUserCredenciales } from '../../utils/storage';
 
 
 
-
+const user = getUserCredenciales();
+    if (!user) {
+      window.location.href = "/int/#/";
+        }
 
 export default function ModalSac() {
 	var url = "https://sistemaintegral.conavi.gob.mx:81"
 	//var url = "http://localhost:3001";
 	let subject = "csalgado@conavi.gob.mx;gmiguel@conavi.gob.mx;rtorralba@conavi.gob.mx;amoreno@conavi.gob.mx;coord.seguridad@sedatu.gob.mx;";
 	//let subject = "lmmendoza@conavi.gob.mx ; jmvargas@conavi.gob.mx";
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	// var user = JSON.parse(localStorage.getItem('credenciales'));
 
 	const validar = (id, require) => {
 

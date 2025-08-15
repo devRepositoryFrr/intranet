@@ -12,8 +12,10 @@ import Alert from '../../assets/js/Alerta.js';
 import Axios from 'axios';
 import { disabled_button, enabled_button } from '../../assets/js/botones'
 import { da } from 'date-fns/locale';
+import { getUserCredenciales } from '../../utils/storage';
+const user = getUserCredenciales();
 function obtenerTipoSoporte() {
-	var user = (JSON.parse(localStorage.getItem('credenciales'))==null)?JSON.parse('[{"email":"notloged","nombre":""}]'):user=JSON.parse(localStorage.getItem('credenciales'));
+	//var user = (JSON.parse(localStorage.getItem('credenciales'))==null)?JSON.parse('[{"email":"notloged","nombre":""}]'):user=JSON.parse(localStorage.getItem('credenciales'));
 	$.each(user[0], function (key, value) {
 		$("#asist_txt" + key).text(value);
 		$("#Sasist_txt" + key).text(value);
@@ -53,7 +55,7 @@ let subject = "soportesistemas@conavi.gob.mx";
 //let subject = "lmmendoza@conavi.gob.mx";
 
 function getAsis() {
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 	let mes = $("#cmbMes").val();
 	//console.log(mes)
 	//$('#tblAsis').DataTable().clear().destroy();
@@ -118,6 +120,11 @@ export default function ModalAsis() {
 	var options = { hour12: false };
 
 	useEffect(() => {
+		const user = getUserCredenciales();
+   		 if (!user) {
+    		  window.location.href = "/int/#/";
+     		 return;
+  			 }
 		fetch('https://geolocation-db.com/json/')
 			.then(response => response.json())
 			.then(data => {
@@ -164,7 +171,7 @@ export default function ModalAsis() {
 	const submitInsert = () => {
 		var tipoe = $("#asist_cbotipo").children("option:selected").val();
 		if (ipAddress == "201.96.171.158" & tipoe != 0) {
-			var user = JSON.parse(localStorage.getItem('credenciales'));
+			//var user = JSON.parse(localStorage.getItem('credenciales'));
 			Axios.post(api_cnfg + '/api/reg_ent', {
 				usuario: user[0].email,
 				tipo_asist: tipoe,
@@ -226,7 +233,7 @@ export default function ModalAsis() {
 		let anticipada = false;
 		//if(diff <= 0 || anticipada){
 		if (ipAddress == "201.96.171.158") {
-			var user = JSON.parse(localStorage.getItem('credenciales'));
+			//var user = JSON.parse(localStorage.getItem('credenciales'));
 			Axios.post(api_cnfg + "/api/reg_sal", {
 				usuario: user[0].email,
 				salida: $("#asist_txtdateS").text(),

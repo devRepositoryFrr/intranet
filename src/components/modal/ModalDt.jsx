@@ -6,6 +6,7 @@ import '../../assets/css/listas.css';
 import '../../assets/css/directorio.css';
 import '../../assets/js/directorio.js';
 import React, { useState, useEffect } from 'react';
+import { getUserCredenciales } from '../../utils/storage';
 
 
 
@@ -13,6 +14,12 @@ import React, { useState, useEffect } from 'react';
 export default function ModalDt() {
 
 	useEffect(() => {
+		 const user = getUserCredenciales();
+  		  if (!user) {
+     		 window.location.href = "/int/#/";
+     		 return;
+   			 }
+		
 		$(document).on("click", ".list-item", function() {
 			var element = $(this).attr('id');
 			
@@ -83,9 +90,9 @@ export default function ModalDt() {
 					<input style={{marginBottom:0}} id="txtBuscar-dt" class="form-control" type="text" placeholder="Buscar usuario, puesto, etc..."></input>
 				</div>
 			</div>
-			<div style={{paddingRight: 40,    textAlign: "end" }}>
+			{/*	<div style={{paddingRight: 40,    textAlign: "end" }}>
 				<span><i class="fas fa-file-download red-ic bottom-buffer-x15" style={{ fontSize: 30 }}></i></span>
-			</div>
+			</div>*/}
 
 
 

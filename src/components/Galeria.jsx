@@ -14,7 +14,7 @@ import '../assets/css/datepicker.css';
 import '../assets/css/emergente.css';
 import '../assets/js/jquery.serializeToJSON'
 import Alerta_ from '../assets/js/Alerta.js';
-
+import { getUserCredenciales } from '../utils/storage';
 
 
 
@@ -23,6 +23,10 @@ import { Redirect, Link, useHistory } from "react-router-dom";
 import Inicio from './Inicio.jsx';
 let modulo = "Galeria";
 let val = 0;
+ const user = getUserCredenciales();
+    if (!user) {
+      window.location.href = "/int/#/";
+          }
 
 const scroll = (id) => {
 	try {
@@ -190,7 +194,7 @@ const load = () => {
 		script.async = true;
 		document.body.appendChild(script);
 
-		var user = JSON.parse(localStorage.getItem('credenciales'));
+	//	var user = JSON.parse(localStorage.getItem('credenciales'));
 		$.each(user, function (key, val) {
 			$("#usr").text(val.nombre);
 		});
@@ -233,11 +237,11 @@ const inicio = () => {
 function Galeria(props) {
 
 	var is_restrict = "";
-	const isLogged = localStorage.getItem('credenciales');
+//	const isLogged = localStorage.getItem('credenciales');
 
 	var Permisos = [];
 	var Modulos = [];
-	var user = JSON.parse(localStorage.getItem('credenciales'));
+	//var user = JSON.parse(localStorage.getItem('credenciales'));
 
 	$.each(user, function (key, val) {
 		Permisos = val.permisos.split(",");
@@ -257,13 +261,13 @@ function Galeria(props) {
 
 	}
 
-	if (!isLogged) {
+	if (!user) {
 
 		out();
 		return (
 			<header></header>
 		);
-	} else if (isLogged) {
+	} else if (user) {
 		load();
 
 		return (

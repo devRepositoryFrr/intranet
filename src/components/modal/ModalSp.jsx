@@ -12,7 +12,7 @@ import { getUserCredenciales } from '../../utils/storage';
 const user = getUserCredenciales();
 function obtenerTipoSoporte() {
 
-console.log("soporte: ",user)
+//console.log("soporte: ",user)
 	//var user = (JSON.parse(localStorage.getItem('credenciales')) == null) ? JSON.parse('[{"email":"notloged","nombre":""}]') : user = JSON.parse(localStorage.getItem('credenciales'));
 	$.each(user[0], function (key, value) {
 		$("#soporte_txt" + key).text(value);
@@ -41,7 +41,7 @@ export default function ModalSp() {
     		  window.location.href = "/int/#/";
      		 return;
    			 }
-			 console.log("sp: ",user)
+			 //console.log("sp: ",user)
 		limpiar();
 		obtenerTipoSoporte();
 

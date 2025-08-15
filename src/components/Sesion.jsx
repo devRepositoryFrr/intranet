@@ -61,6 +61,7 @@ const isesion = () => {
                     visita(usr);
                     
                     localStorage.setItem('credenciales', JSON.stringify(response.data));
+                    //console.log(JSON.stringify(response.data))
                     if (pwd == "1ntr@n3t.cnv") {
                         localStorage.setItem('flag', "[{\"cambio\":\"0\"}]");
                     } else {

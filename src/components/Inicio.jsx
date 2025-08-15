@@ -36,6 +36,9 @@ import Axios from 'axios';
 import SystemsGalery from './SystemsGalery';
 const apiKey = process.env.REACT_APP_API_KEY;
 const user = getUserCredenciales();
+const email = user[0].email || null;
+const nombre = user[0].nombre || null;
+const expires = user[0].expires || null;
 let modulo = "Inicio";
 let tries = 0;
 var _currentTime = new Date()
@@ -85,7 +88,7 @@ const submitPsw = () => {
 		Axios.post(apiKey + '/api/cambio_contrasena', {
 
 			password: $("#n_password").val(),
-			email: user[0].email,
+			email: email,
 		}).then(
 			(response) => {
 
@@ -125,7 +128,7 @@ function comeri() {
 	//var user = JSON.parse(localStorage.getItem('credenciales'));
 	scroll("bread");
 	window.location.href = "/int/#/Comeri";
-	$("#cboUsuario_pn").append("<option value='" + user[0].email + "'>" + user[0].nombre + "</option>");
+	$("#cboUsuario_pn").append("<option value='" + email + "'>" + nombre + "</option>");
 }
 
 function obtenerDirectorio(tipo) {
@@ -135,7 +138,7 @@ function obtenerDirectorio(tipo) {
 
 		var items = [];
 
-console.log(data);
+//console.log(data);
 
 		$.each(data, function (key, val) {
 
@@ -176,7 +179,7 @@ function obtenerReservaciones() {
 
 	//var user = JSON.parse(localStorage.getItem('credenciales'));
 
-	$.getJSON( apiKey+ "/api/ver_reservaciones/" + user[0].email, function (data) {
+	$.getJSON( apiKey+ "/api/ver_reservaciones/" + email, function (data) {
 		var items = [];
 		$.each(data, function (key, val) {
 			items.push("<div style='padding:10px; text-align:'center'' class='list-lb'><div class='hidden' id='dv" + val.id + "'><i id='a" + val.id + "' class='fas fa-check-circle conf box'></i><i id='c" + val.id + "' class='fas fa-times-circle  canc box'></i></div><i id='d" + val.id + "'  class='fas fa-minus-circle  del '></i>" + val.detalle + "</div>");
@@ -319,7 +322,7 @@ function obtenerTipoSoporte() {
 function obtenerStatusTicket() {
 	//var user = JSON.parse(localStorage.getItem('credenciales'));
 
-	$.getJSON( apiKey + "/api/ver_tickets/" + user[0].email, function (data) {
+	$.getJSON( apiKey + "/api/ver_tickets/" + email, function (data) {
 		var items = [];
 		$.each(data, function (key, val) {
 			var icon = "";
@@ -609,7 +612,7 @@ const add_bt = () => {
 	$("#content-bt").css("display", "block");
 
 	//var user = JSON.parse(localStorage.getItem('credenciales'));
-	$("#cboUsuario").append("<option value='" + user[0].email + "'>" + user[0].nombre + "</option>");
+	$("#cboUsuario").append("<option value='" + email + "'>" + nombre + "</option>");
 
 }
 
@@ -623,7 +626,7 @@ const add_lb = () => {
 
 const add_sac = () => {
 	//var user = JSON.parse(localStorage.getItem('credenciales'));
-	$("#cboUsuario_s").append("<option value='" + user[0].email + "'>" + user[0].nombre + "</option>");
+	$("#cboUsuario_s").append("<option value='" + email + "'>" + nombre + "</option>");
 
 
 	$("#modal").css("display", "block");
@@ -633,7 +636,7 @@ const add_sac = () => {
 
 const add_svh = () => {
 	//var user = JSON.parse(localStorage.getItem('credenciales'));
-	$("#cboUsuario_v").append("<option value='" + user[0].email + "'>" + user[0].nombre + "</option>");
+	$("#cboUsuario_v").append("<option value='" + email + "'>" + nombre + "</option>");
 
 	$("#modal").css("display", "block");
 	$('html').css("overflow", "hidden");
@@ -1329,8 +1332,7 @@ export function asistencia() {
 	});
 	//var user = (JSON.parse(localStorage.getItem('credenciales'))==null)?JSON.parse('[{"email":"notloged","nombre":""}]'):user=JSON.parse(localStorage.getItem('credenciales'));
 	//console.log("usuario: ",user)
-	const email = user[0].email;
-	console.log(email)
+	
 	const d = new Date().toLocaleDateString('en-CA');
 	const h = new Date().toLocaleTimeString("en-US", { hour12: false });
 	//console.log(email)
@@ -1390,7 +1392,7 @@ function Inicio(props) {
 
 		} else {
 			
-			if (user[0].expires == null || Date.parse(user[0].expires) < Date.parse(_currentTime)) {
+			if (expires == null || Date.parse(expires) < Date.parse(_currentTime)) {
 				out();
 			} else {
 				jqu();

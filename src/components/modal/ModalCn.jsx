@@ -83,11 +83,17 @@ export default function ModalCn() {
    
 useEffect(() => {
   const user = getUserCredenciales();
-  let empleado = user[0].num_empleado.toString().padStart(8,0) || null;
-    if (!user) {
-      window.location.href = "/int/#/";
-      return;
-    }
+
+  // ⚡ Manejo seguro
+  const empleado = user?.[0]?.num_empleado
+    ? user[0].num_empleado.toString().padStart(8, "0")
+    : null;
+
+  if (!empleado) {
+    // si no hay usuario válido, redirigir
+    window.location.href = "/int/#/";
+    return;
+  }
     //console.log(empleado)
   //var data ={}; // {"name":"nominas","type":"directory","children":[{"name":"2024","type":"directory","children":[{"name":"PDF_11_14","type":"directory","children":[{"name":"2024_1_11_14_00800197.Pdf","type":"file"},{"name":"2024_1_11_14_00800198.Pdf","type":"file"},{"name":"2024_1_11_14_00800200.Pdf","type":"file"},{"name":"2024_1_11_14_00800201.Pdf","type":"file"},{"name":"2024_1_11_14_00800203.Pdf","type":"file"},{"name":"2024_1_11_14_00800207.Pdf","type":"file"}]},{"name":"XML_11_14","type":"directory","children":[{"name":"2024_1_11_14_00800197.xml","type":"file"},{"name":"2024_1_11_14_00800198.xml","type":"file"},{"name":"2024_1_11_14_00800200.xml","type":"file"},{"name":"2024_1_11_14_00800201.xml","type":"file"},{"name":"2024_1_11_14_00800203.xml","type":"file"},{"name":"2024_1_11_14_00800207.xml","type":"file"}]}]},{"name":"2025","type":"directory","children":[{"name":"PDF_11_14","type":"directory","children":[{"name":"2025_1_11_14_00800197.Pdf","type":"file"},{"name":"2025_1_11_14_00800198.Pdf","type":"file"},{"name":"2025_1_11_14_00800200.Pdf","type":"file"},{"name":"2025_1_11_14_00800201.Pdf","type":"file"},{"name":"2025_1_11_14_00800203.Pdf","type":"file"},{"name":"2025_1_11_14_00800207.Pdf","type":"file"}]},{"name":"XML_11_14","type":"directory","children":[{"name":"2025_1_11_14_00800197.xml","type":"file"},{"name":"2025_1_11_14_00800198.xml","type":"file"},{"name":"2025_1_11_14_00800200.xml","type":"file"},{"name":"2025_1_11_14_00800201.xml","type":"file"},{"name":"2025_1_11_14_00800203.xml","type":"file"},{"name":"2025_1_11_14_00800207.xml","type":"file"}]}]}]};
    const getNomina = async () => {

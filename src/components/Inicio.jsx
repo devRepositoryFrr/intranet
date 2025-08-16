@@ -34,8 +34,10 @@ import { getUserCredenciales } from '../utils/storage';
 import Alert from '../assets/js/Alerta.js';
 import Axios from 'axios';
 import SystemsGalery from './SystemsGalery';
+import PDFCE24 from "../assets/docs/4.1.2.pdf";
 const apiKey = process.env.REACT_APP_API_KEY;
 const user = getUserCredenciales();
+
 const email = user[0].email || null;
 const nombre = user[0].nombre || null;
 const expires = user[0].expires || null;
@@ -1558,7 +1560,17 @@ function Inicio(props) {
 							<a href="https://sistemaintegral.conavi.gob.mx:81/int/#/cepci" target={"_blank"}><img width={650} class="img-responsive" src="https://sistemaintegral.conavi.gob.mx:81/int/cepci_conv.png"></img></a>
 						</div>
 					</div>
-
+<div ></div><strong><h10>“Informe Anual de Actividades del Comité de Ética”</h10></strong>
+					<hr class="red"></hr>
+					<div class="cepci-vot bottom-buffer">
+						<div class="">
+							<ul>
+    <li><a href={PDFCE24} target="_blank" rel="noopener noreferrer">
+         INFORME ANUAL DE
+ACTIVIDADES 2024</a> </li>
+  </ul>
+						</div>
+					</div>
 					<div ></div><strong><h10>Programa Nacional de Combate a la Corrupción y la Impunidad y de Mejora de la Gestión Pública 2019-2024</h10></strong>
 					<hr class="red"></hr>
 					<div class="cepci-vot bottom-buffer">
